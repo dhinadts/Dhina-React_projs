@@ -1,28 +1,24 @@
 import { Link } from "react-router-dom";
+import "./Home.css"; // Add this for clean separation
 
 const Home = () => {
-  return (
-    <div>
-      <h1>List of Apps</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          width: "100vw",
-        }}
-      >
-        <Link to="/qrcode">
-          <h1>QrCode Generator</h1>
-        </Link>
+  const apps = [
+    { path: "/qrcode", name: "QrCode Generator" },
+    { path: "/dictionary", name: "Dictionary" },
+    { path: "/translator", name: "Translator" },
+  ];
 
-        <Link to="/dictionary">
-          <h1> Dictionary</h1>
-        </Link>
-        <Link to="/translator">
-          <h1>Translator</h1>
-        </Link>
+  return (
+    <div className="home-container">
+      <h1 /* className="home-title" */>List of Apps</h1>
+      <div className="grid-container">
+        {apps.map((app) => (
+          <Link to={app.path} key={app.path} className="card-link">
+            <div className="card">
+              <h2 className="card-title">{app.name}</h2>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
